@@ -46,6 +46,8 @@ async function run() {
 
         const usersCollection = client.db('collegeBayDB').collection('users');
         const collegesCollection = client.db('collegeBayDB').collection('colleges');
+        const imagesCollection = client.db('collegeBayDB').collection('galary');
+        const reviewsCollection = client.db('collegeBayDB').collection('reviews');
 
                 // // Verify Admin Middleware 
                 // const checkAdminOrUser = async (req, res, next) => {
@@ -80,6 +82,18 @@ async function run() {
 
         app.get('/users', async (req, res) => {
             const result = await usersCollection.find().toArray();
+            res.send(result)
+        })
+
+        // Galary Collection 
+        app.get('/galary', async (req, res) => {
+            const result = await imagesCollection.find().toArray();
+            res.send(result)
+        })
+
+        // Reviews Collection 
+        app.get('/reviews', async (req, res) => {
+            const result = await reviewsCollection.find().toArray();
             res.send(result)
         })
 
